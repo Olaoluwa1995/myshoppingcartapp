@@ -3,16 +3,6 @@ import { Layout, Menu } from "antd";
 
 const { Content, Header } = Layout;
 class CustomLayout extends React.Component {
-	state = {
-		collapsed: false,
-	};
-
-	handleItemClick = (e, { name }) => this.setState({ activeItem: name });
-
-	onCollapse = (collapsed) => {
-		console.log(collapsed);
-		this.setState({ collapsed });
-	};
 
 	render() {
 		return (

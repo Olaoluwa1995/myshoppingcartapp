@@ -139,7 +139,7 @@ class ProductList extends React.Component {
 	};
 
 	handleTruncateTitle = (str) => {
-		return str.length > 30 ? str.substring(0, 30) + "..." : str;
+		return str.length > 20 ? str.substring(0, 20) + "..." : str;
 	};
 
 	openCartModal = () => {

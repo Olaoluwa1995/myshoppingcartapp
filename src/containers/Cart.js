@@ -6,8 +6,6 @@ class Cart extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			loading: false,
-			error: null,
 			id: this.props.id,
 		};
 

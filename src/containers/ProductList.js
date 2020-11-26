@@ -24,6 +24,7 @@ class ProductList extends React.Component {
     this.handleClearCart = this.handleClearCart.bind(this);
     this.handleCheck = this.handleCheck.bind(this);
     this.handleTruncateText = this.handleTruncateText.bind(this);
+    this.handleTruncateTitle = this.handleTruncateTitle.bind(this);
     this.handleUpdateStorage = this.handleUpdateStorage.bind(this);
     this.onToken = this.onToken.bind(this);
   }
@@ -140,6 +141,10 @@ class ProductList extends React.Component {
     return str.length > 100 ? str.substring(0, 100) + "..." : str;
   }
 
+  handleTruncateTitle = (str) => {
+    return str.length > 30 ? str.substring(0, 30) + "..." : str;
+  }
+
   openCartModal = () => {
     this.setState({
       visible: true,
@@ -220,7 +225,9 @@ class ProductList extends React.Component {
               handleRemoveItem={this.handleRemoveItem}
               key={item.id}
               id={item.id}
-              title={item.title}
+              title={<span style={{overflow: "hidden", textOverflow: "ellipsis"}}>
+                  {this.handleTruncateTitle(item.title)}
+                </span>}
               price={item.price}
               quantity={item.quantity}
               total={item.total}

@@ -39,7 +39,7 @@ class Cart extends React.Component {
     return (
       <Container>
         <Card
-        style={{ width: 300, margin: 10, marginLeft: 60, height: 250}}
+        style={{ width: 300, margin: 10, marginLeft: 60, height: 230}}
         hoverable
         cover={<img src={this.props.image} alt="Item" style={{ width: 100, height: 80, marginTop: 5, marginLeft: 20 }} />}
         >

@@ -2,7 +2,17 @@ import React, { Fragment } from "react";
 import axios from "axios";
 import { Container, Message, Label, Icon } from "semantic-ui-react";
 import _ from "lodash";
-import { Row, Col, List, Card, Spin, Alert, message, Modal, Button } from "antd";
+import {
+	Row,
+	Col,
+	List,
+	Card,
+	Spin,
+	Alert,
+	message,
+	Modal,
+	Button,
+} from "antd";
 import Cart from "./Cart";
 import StripeCheckout from "react-stripe-checkout";
 
@@ -175,7 +185,6 @@ class ProductList extends React.Component {
 
 		const cartModal = (
 			<Modal
-      
 				visible={visible}
 				title="Cart Items"
 				onCancel={this.closeCartModal}
@@ -200,48 +209,58 @@ class ProductList extends React.Component {
 				]}
 			>
 				<Fragment>
-          <div style={{ textAlign: "right", marginBottom: 5 }}>
-              {cart.length > 0 && (
-                <StripeCheckout
-                  amount={totalPrice * 100}
-                  billingAddress
-                  locale="auto"
-                  stripeKey="pk_test_51GunXnB9GEXVUU97tJYpFoKuErZZd3iDvY2zsY5bUNzEZHghZ3Dk52o3lLJJWpl34jXTjjFHs6VgU6soNtdrGZVo00h16scNWT"
-                  token={this.onToken}
-                />
-              )}
-          </div>
-					<div style={{ marginLeft: 10, marginBottom: 10 }}>
-            <Label color="brown" size="large">Total Amount: <Label.Detail>#{totalPrice}</Label.Detail></Label>
-					</div>
-          <Row gutter={16}>
-					{cart.map((item) => {
-						return (
-              <Col key={item.id} xs={24} sm={12} md={12} lg={12} xl={12} style={{ marginBottom: 10}}>
-							<Cart
-								handleItemDecrement={this.handleItemDecrement}
-								handleItemIncrement={this.handleItemIncrement}
-								handleRemoveItem={this.handleRemoveItem}
-								key={item.id}
-								id={item.id}
-								title={
-									<span
-										style={{ overflow: "hidden", textOverflow: "ellipsis" }}
-									>
-										{this.handleTruncateTitle(item.title)}
-									</span>
-								}
-								price={item.price}
-								quantity={item.quantity}
-								total={item.total}
-								description={item.product.description}
-								category={item.product.category}
-								image={item.product.image}
+					<div style={{ textAlign: "right", marginBottom: 5 }}>
+						{cart.length > 0 && (
+							<StripeCheckout
+								amount={totalPrice * 100}
+								billingAddress
+								locale="auto"
+								stripeKey="pk_test_51GunXnB9GEXVUU97tJYpFoKuErZZd3iDvY2zsY5bUNzEZHghZ3Dk52o3lLJJWpl34jXTjjFHs6VgU6soNtdrGZVo00h16scNWT"
+								token={this.onToken}
 							/>
-              </Col>
-						);
-					})}
-          </Row>
+						)}
+					</div>
+					<div style={{ marginLeft: 10, marginBottom: 10 }}>
+						<Label color="brown" size="large">
+							Total Amount: <Label.Detail>#{totalPrice}</Label.Detail>
+						</Label>
+					</div>
+					<Row gutter={16}>
+						{cart.map((item) => {
+							return (
+								<Col
+									key={item.id}
+									xs={24}
+									sm={12}
+									md={12}
+									lg={12}
+									xl={12}
+									style={{ marginBottom: 10 }}
+								>
+									<Cart
+										handleItemDecrement={this.handleItemDecrement}
+										handleItemIncrement={this.handleItemIncrement}
+										handleRemoveItem={this.handleRemoveItem}
+										key={item.id}
+										id={item.id}
+										title={
+											<span
+												style={{ overflow: "hidden", textOverflow: "ellipsis" }}
+											>
+												{this.handleTruncateTitle(item.title)}
+											</span>
+										}
+										price={item.price}
+										quantity={item.quantity}
+										total={item.total}
+										description={item.product.description}
+										category={item.product.category}
+										image={item.product.image}
+									/>
+								</Col>
+							);
+						})}
+					</Row>
 				</Fragment>
 			</Modal>
 		);
@@ -285,9 +304,7 @@ class ProductList extends React.Component {
 								style={{ height: 520 }}
 								title={_.upperCase(product.category)}
 								hoverable
-								cover={
-									<img src={product.image} style={{ height: 250 }} alt="" />
-								}
+								cover={<img src={product.image} style={{ height: 250 }} alt="" />}
 							>
 								<Meta
 									title={product.title}

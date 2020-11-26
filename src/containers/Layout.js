@@ -3,7 +3,6 @@ import { Layout, Menu } from "antd";
 
 const { Content, Header } = Layout;
 class CustomLayout extends React.Component {
-
 	render() {
 		return (
 			<Layout>
@@ -19,7 +18,7 @@ class CustomLayout extends React.Component {
 					<Content style={{ marginTop: 80 }}>
 						<div
 							className="site-layout-background"
-							style={{ padding: 24, minHeight: 360 }}
+							style={{ padding: 23, minHeight: 360 }}
 						>
 							{this.props.children}
 						</div>

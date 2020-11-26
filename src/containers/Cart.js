@@ -40,9 +40,9 @@ class Cart extends React.Component {
 						/>
 					}
 				>
-					<p>{this.props.title}</p>
+				<p>{this.props.title}</p>
 
-          <div style={{ marginBottom: 5}}>
+        <div style={{ marginBottom: 5}}>
             <Label>
               Item price: <Label.Detail>#{this.props.price}</Label.Detail>
             </Label>
@@ -72,7 +72,7 @@ class Cart extends React.Component {
 							style={{ cursor: "pointer", marginLeft: 20 }}
 							onClick={this.removeItem}
 						/>
-					</div>
+					</div>  
 				</Card>
 			</Container>
 		);

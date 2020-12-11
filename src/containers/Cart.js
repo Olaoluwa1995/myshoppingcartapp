@@ -19,17 +19,17 @@ class Cart extends React.Component {
 				>
 					<p>{this.props.title}</p>
 
-					<div style={{ marginBottom: 5 }}>
+					<div style={{ marginBottom: 4 }}>
 						<Label>
 							Item price: <Label.Detail>#{this.props.price}</Label.Detail>
 						</Label>
 					</div>
-					<div style={{ marginBottom: 5 }}>
+					<div style={{ marginBottom: 4 }}>
 						<Label>
 							Total price: <Label.Detail>#{this.props.total}</Label.Detail>
 						</Label>
 					</div>
-					<div style={{ marginBottom: 10 }}>
+					<div style={{ marginBottom: 8 }}>
 						<Icon
 							name="minus"
 							color="blue"

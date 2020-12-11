@@ -7,16 +7,15 @@ import "antd/dist/antd.css";
 import "./App.css";
 
 class App extends Component {
-
-  render() {
-    return (
-      <Router>
-        <CustomLayout>
-          <BaseRouter />
-        </CustomLayout>
-      </Router>
-    );
-  }
+	render() {
+		return (
+			<Router>
+				<CustomLayout>
+					<BaseRouter />
+				</CustomLayout>
+			</Router>
+		);
+	}
 }
 
 export default App;

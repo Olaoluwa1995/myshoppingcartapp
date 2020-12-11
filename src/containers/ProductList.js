@@ -2,18 +2,9 @@ import React, { Fragment } from "react";
 import axios from "axios";
 import { Container, Message, Label, Icon } from "semantic-ui-react";
 import _ from "lodash";
-import {
-	Row,
-	Col,
-	List,
-	Card,
-	Spin,
-	Alert,
-	message,
-	Modal,
-	Button,
-} from "antd";
+import { Row, Col, List, Spin, Alert, message, Modal, Button } from "antd";
 import Cart from "./Cart";
+import Product from "./Product";
 import StripeCheckout from "react-stripe-checkout";
 
 class ProductList extends React.Component {
@@ -26,17 +17,6 @@ class ProductList extends React.Component {
 			data: [],
 			cart: JSON.parse(localStorage.getItem("cart")) || [],
 		};
-
-		this.handleAddToCart = this.handleAddToCart.bind(this);
-		this.handleRemoveItem = this.handleRemoveItem.bind(this);
-		this.handleItemIncrement = this.handleItemIncrement.bind(this);
-		this.handleItemDecrement = this.handleItemDecrement.bind(this);
-		this.handleClearCart = this.handleClearCart.bind(this);
-		this.handleCheck = this.handleCheck.bind(this);
-		this.handleTruncateText = this.handleTruncateText.bind(this);
-		this.handleTruncateTitle = this.handleTruncateTitle.bind(this);
-		this.handleUpdateStorage = this.handleUpdateStorage.bind(this);
-		this.onToken = this.onToken.bind(this);
 	}
 
 	componentDidMount() {
@@ -176,7 +156,6 @@ class ProductList extends React.Component {
 
 	render() {
 		const { data, error, loading, cart, visible } = this.state;
-		const { Meta } = Card;
 
 		let totalPrice = 0;
 		for (let item of cart) {
@@ -238,9 +217,13 @@ class ProductList extends React.Component {
 									style={{ marginBottom: 10 }}
 								>
 									<Cart
-										handleItemDecrement={this.handleItemDecrement}
-										handleItemIncrement={this.handleItemIncrement}
-										handleRemoveItem={this.handleRemoveItem}
+										handleItemDecrement={() =>
+											this.handleItemDecrement(item.id)
+										}
+										handleItemIncrement={() =>
+											this.handleItemIncrement(item.id)
+										}
+										handleRemoveItem={() => this.handleRemoveItem(item.id)}
 										key={item.id}
 										id={item.id}
 										title={
@@ -300,38 +283,23 @@ class ProductList extends React.Component {
 					pagination={{ pageSize: 6 }}
 					renderItem={(product) => (
 						<List.Item key={product.id}>
-							<Card
-								style={{ height: 520 }}
+							<Product
 								title={_.upperCase(product.category)}
-								hoverable
-								cover={<img src={product.image} style={{ height: 250 }} alt="" />}
-							>
-								<Meta
-									title={product.title}
-									description={
-										<span
-											style={{ overflow: "hidden", textOverflow: "ellipsis" }}
-										>
-											{this.handleTruncateText(product.description)}
-										</span>
-									}
-								/>
-								<div style={{ marginTop: 5 }}>
-									<Label tag size="large">
-										#{product.price}
-									</Label>
-								</div>
-								<div style={{ float: "right", marginTop: 5 }}>
-									<Button
-										type="primary"
-										shape="round"
-										icon={<Icon name="cart plus" />}
-										onClick={() => this.handleAddToCart(product.id)}
+								cover={
+									<img src={product.image} style={{ height: 250 }} alt="" />
+								}
+								meta_title={product.title}
+								description={
+									<span
+										style={{ overflow: "hidden", textOverflow: "ellipsis" }}
 									>
-										Add To Cart
-									</Button>
-								</div>
-							</Card>
+										{this.handleTruncateText(product.description)}
+									</span>
+								}
+								price={product.price}
+								icon={<Icon name="cart plus" />}
+								handleAddToCart={() => this.handleAddToCart(product.id)}
+							/>
 						</List.Item>
 					)}
 				/>
